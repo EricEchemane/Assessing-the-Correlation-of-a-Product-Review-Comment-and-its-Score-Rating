@@ -48,6 +48,14 @@
             flex-direction: column;
             gap: 1.5rem;
         }
+
+        .matched {
+            color: green;
+        }
+
+        .not-matched {
+            color: crimson;
+        }
     </style>
 </head>
 
@@ -73,7 +81,15 @@
                 {{ prediction['text_comment'] }}
             </p>
         </div>
-        <h3> Result: {{ prediction['matched'] }} </h3>
+
+        {% if prediction['matched'] == 'Matched' %}
+        <h3> Result: <span class="matched"> {{ prediction['matched'] }} </span> </h3>
+        {% endif %}
+
+        {% if prediction['matched'] != 'Matched' %}
+        <h3> Result: <span class="not-matched"> {{ prediction['matched'] }} </span> </h3>
+        {% endif %}
+
         <h4> Accuracy: {{ prediction['accuracy'] }}%</h4>
         {% endif %}
     </form>
