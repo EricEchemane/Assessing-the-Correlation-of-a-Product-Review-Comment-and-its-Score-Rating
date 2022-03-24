@@ -14,13 +14,13 @@ def index():
         return render_template('index.html')
 
     score_rating = request.form.get('scoreRating')
-    text_review = request.form.get('textReview')
+    text_comment = request.form.get('textComment')
     # validate body
-    if not score_rating or not text_review: return 'Not Found',404
+    if not score_rating or not text_comment: return 'Not Found',404
 
     score_rating = int(score_rating)
 
-    prediction = classify(text_review)[0]
+    prediction = classify(text_comment)[0]
     matched = False
 
     if prediction == Sentiment.POSITIVE:
@@ -31,7 +31,9 @@ def index():
     return render_template('index.html', prediction = {
         'matched': is_matched(matched),
         'sentiment': prediction,
-        'accuracy': round(accuracy_score * 100, 2)
+        'accuracy': round(accuracy_score * 100, 2),
+        'score_rating': score_rating,
+        'text_comment': text_comment
     })
 
 if __name__ == '__main__':

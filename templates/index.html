@@ -53,12 +53,27 @@
 
 <body>
     <form action="/" method="post">
-        <h2> Sentiment Analysis Model </h2>
+        <div>
+            <h3> Assessing the Appropriateness of a Product’s Score Rating against its Text Comment using Sentiment
+                Analysis
+            </h3>
+            </p>
+        </div>
         <input type="number" placeholder="Score rating" name="scoreRating" max="5" required />
-        <input type="text" placeholder="Text Review" name="textReview" required />
+        <input type="text" placeholder="Text Comment" name="textComment" required />
         <button name="submit"> Analyze </button>
         {% if prediction %}
-        <h3> {{ prediction['matched'] }} </h3>
+        <div>
+            <p>
+                <b>Rating: </b>
+                {{ prediction['score_rating'] }}
+            </p>
+            <p>
+                <b>Text Comment: </b>
+                {{ prediction['text_comment'] }}
+            </p>
+        </div>
+        <h3> Result: {{ prediction['matched'] }} </h3>
         <h4> Accuracy: {{ prediction['accuracy'] }}%</h4>
         {% endif %}
     </form>
