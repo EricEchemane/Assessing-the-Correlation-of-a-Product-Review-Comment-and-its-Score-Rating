@@ -17,7 +17,8 @@
         }
 
         input,
-        button {
+        button,
+        textarea {
             padding: 1rem;
             border-radius: .3rem;
             background-color: hsla(0, 0%, 0%, .05);
@@ -27,7 +28,8 @@
             box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 1);
         }
 
-        button:focus-visible {
+        button:focus-visible,
+        textarea:focus-visible {
             box-shadow: 0 0 0 1px hsla(0, 0%, 0%, 1);
             background-color: hsla(0, 0%, 0%, .07);
         }
@@ -62,13 +64,13 @@
 <body>
     <form action="/" method="post">
         <div>
-            <h3> Assessing the Appropriateness of a Product’s Score Rating against its Text Comment using Sentiment
-                Analysis
+            <h3>
+                This is a Machine Learning Application That Can Assess the Correlation of a Product's Text Comment and
+                its Score Rating
             </h3>
-            </p>
         </div>
-        <input type="number" placeholder="Score rating" name="scoreRating" max="5" required />
-        <input type="text" placeholder="Text Comment" name="textComment" required />
+        <input type="number" placeholder="Product Score rating" name="scoreRating" max="5" required />
+        <textarea placeholder="Product Text Comment" name="textComment" required></textarea>
         <button name="submit"> Analyze </button>
         {% if prediction %}
         <div>
