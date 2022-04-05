@@ -91,7 +91,6 @@
         {% if prediction['matched'] != 'Correlated' %}
         <h3> Result: <span class="not-matched"> {{ prediction['matched'] }} </span> </h3>
         {% endif %}
-        {% endif %}
 
         <details>
             <summary> Analysis Details </summary>
@@ -101,6 +100,8 @@
             <p> Correlated: <b> {{ prediction['correlated'] }} </b> </p>
             <p> Current Model Accuracy: <b> {{ prediction['accuracy'] }}% </b> </p>
         </details>
+
+        {% endif %}
     </form>
 </body>
 
