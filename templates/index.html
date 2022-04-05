@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask ML Deployment</title>
+    <title>Assessing the Correlation of a Product Review Comment and its Score Rating</title>
     <style>
         * {
             margin: 0;
@@ -44,7 +44,7 @@
         }
 
         form {
-            width: min(400px, 90vw);
+            width: min(500px, 90vw);
             margin: 2rem auto;
             display: flex;
             flex-direction: column;
@@ -65,12 +65,12 @@
     <form action="/" method="post">
         <div>
             <h3>
-                This is a Machine Learning Application That Can Assess the Correlation of a Product's Text Comment and
+                This is a Machine Learning Application That Can Assess the Correlation of a Product Review Comment and
                 its Score Rating
             </h3>
         </div>
-        <input type="number" placeholder="Product Score rating" name="scoreRating" max="5" required />
-        <textarea placeholder="Product Text Comment" name="textComment" required></textarea>
+        <input type="number" placeholder="Product Score Rating" name="scoreRating" max="5" required />
+        <textarea placeholder="Product Comment" name="textComment" required></textarea>
         <button name="submit"> Analyze </button>
         {% if prediction %}
         <div>
@@ -84,16 +84,23 @@
             </p>
         </div>
 
-        {% if prediction['matched'] == 'Matched' %}
+        {% if prediction['matched'] == 'Correlated' %}
         <h3> Result: <span class="matched"> {{ prediction['matched'] }} </span> </h3>
         {% endif %}
 
-        {% if prediction['matched'] != 'Matched' %}
+        {% if prediction['matched'] != 'Correlated' %}
         <h3> Result: <span class="not-matched"> {{ prediction['matched'] }} </span> </h3>
         {% endif %}
-
-        <h4> Accuracy: {{ prediction['accuracy'] }}%</h4>
         {% endif %}
+
+        <details>
+            <summary> Analysis Details </summary>
+            <br />
+            <p> Sentiment of Score Rating: <b> {{ prediction['score_rating_sentiment'] }} </b> </p>
+            <p> Sentiment of Text Comment: <b> {{ prediction['text_comment_sentiment'] }} </b> </p>
+            <p> Correlated: <b> {{ prediction['correlated'] }} </b> </p>
+            <p> Current Model Accuracy: <b> {{ prediction['accuracy'] }}% </b> </p>
+        </details>
     </form>
 </body>
 
