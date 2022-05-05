@@ -1,0 +1,7 @@
+POST http://localhost:2900/
+Content-Type: application/json
+
+{
+    "scoreRating": 1,
+    "ganda": "textComment"
+}
